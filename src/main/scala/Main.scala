@@ -8,7 +8,8 @@ object Main {
       .master("local[*]")
       .config("hadoop.native.lib","false")
       .getOrCreate()
-    val data = spark.read.option("header", "true").option("inferSchema", "true").csv("C:\\Users\\rahul\\Downloads\\vehicleMH.csv").cache()
+    val path = "../vehicleAnalysis/src/main/resources/vehicleMH.csv"
+    val data = spark.read.option("header", "true").option("inferSchema", "true").csv(path).cache()
     data.printSchema()
     data.count()
     data.show(5,false)
